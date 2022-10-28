@@ -1,0 +1,79 @@
+.static {
+  position: static
+}
+
+.fixed {
+  position: fixed
+}
+
+.absolute {
+  position: absolute
+}
+
+.relative {
+  position: relative
+}
+
+.block {
+  display: block
+}
+
+.inline {
+  display: inline
+}
+
+.flex {
+  display: flex
+}
+
+.contents {
+  display: contents
+}
+
+.hidden {
+  display: none
+}
+
+.w-auto {
+  width: auto
+}
+
+.shrink {
+  flex-shrink: 1
+}
+
+.grow {
+  flex-grow: 1
+}
+
+.rounded {
+  border-radius: 0.25rem
+}
+
+.border {
+  border-width: 1px
+}
+
+.uppercase {
+  text-transform: uppercase
+}
+
+.capitalize {
+  text-transform: capitalize
+}
+
+.italic {
+  font-style: italic
+}
+
+.underline {
+  text-decoration-line: underline
+}
+
+.line-through {
+  text-decoration-line: line-through
+}
+
+.\[a-zA-Z0-9\:_-\] {
+  a-z-a--z0-9: -
+}
