@@ -5,12 +5,12 @@ import { RootStackParamList } from '../navigator/RootNavigator'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ImgBackground from '../component/ImgBackground';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
+export type SplashNavigationProps = NativeStackScreenProps<RootStackParamList, 'Splash'>;
 
 const img = require('../images/background_login.png');
 const lgo = require('../images/Logo.png')
 
-const SplashScreen = ({ navigation }: Props) => {
+const SplashScreen = ({ navigation }: SplashNavigationProps) => {
   useLayoutEffect(() => navigation.setOptions({ headerShown: false }), [navigation]);
 
   const [animating, setAnimating] = useState(true);
@@ -23,16 +23,23 @@ const SplashScreen = ({ navigation }: Props) => {
   }, [])
 
   return (
-    <View style={styles.view}>
+    <View style={{ flex: 1 }}>
       <ImgBackground source={img}
         resizeMode={'cover'}
         style={styles.image}>
-        <SafeAreaView style={{ flex: 12, justifyContent: 'center', height: '10%' }}>
-          <Image source={lgo} style={{ margin: 30 }} />
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
+          <View style={styles.view}>
+            <Image source={lgo} style={{ margin: 30 }} />
+          </View>
+          <View style={styles.Middle}>
+            <ActivityIndicator
+              animating={animating}
+              color={'#000000'}
+              size={'large'}
+              style={styles.activityIndicator}
+            />
+          </View>
         </SafeAreaView>
-        <View style={styles.Middle}>
-          <ActivityIndicator animating={animating} color={'#FFFFFF'} size={'large'} />
-        </View>
       </ImgBackground>
     </View>
   )
@@ -43,11 +50,12 @@ export default SplashScreen
 const styles = StyleSheet.create({
   view: {
     flex: 1,
+    justifyContent: 'flex-start',
   },
   Middle: {
-    flex: 2,
+    flex: 5,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   image: {
     flex: 1,
