@@ -137,7 +137,7 @@ const SignUpScreen = () => {
                     style={styles.buttonStyle}
                     activeOpacity={0.5}
                     onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.buttonTextStyle}>Login agora!</Text>
+                    <Text style={[styles.buttonTextStyle, {alignSelf: 'center'}]}>Login agora!</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -162,7 +162,7 @@ const SignUpScreen = () => {
                     }}>
 
                     <View style={{ flex: 1, alignItems: 'center' }}>
-                        <Image alt='Logo' source={lgo} style={{ height: '100%', marginTop: 30 }} />
+                        <Image alt='Logo' source={lgo} resizeMode='center' />
                     </View>
 
                     <View style={{ flex: 3 }}>
@@ -388,7 +388,6 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginLeft: 15,
         marginRight: 15,
-        alignSelf: 'center'
     },
     buttonStyleX: {
         marginTop: 12,

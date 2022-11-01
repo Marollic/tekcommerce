@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigator from './AuthNavigator';
-import TabNavigator from './TabNavigator';
 import SplashScreen from '../screens/SplashScreen';
+import DrawerNavigator from './DrawerNavigator';
 
 export type RootStackParamList = {
     Auth: undefined;
@@ -25,7 +25,7 @@ const RootNavigator = () => {
             </RootStack.Group>
 
             <RootStack.Group>
-                <RootStack.Screen name='Main' component={TabNavigator} />
+                <RootStack.Screen name='Main' component={DrawerNavigator} />
             </RootStack.Group>
         </RootStack.Navigator>
     )

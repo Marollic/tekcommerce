@@ -92,7 +92,7 @@ const LoginScreen = ({ navigation }: NativeStackScreenProps<AuthStackParamList, 
                 
                 <KeyboardAvoidingView enabled>
                     <View style={{ flex: 4, alignItems: 'center' }}>
-                        <Image alt='Logo' source={lgo} style={{ height: '100%' }} />
+                        <Image alt='Logo' source={lgo} resizeMode='center' />
                     </View>
 
                     <View style={{ flex: 7 }}>

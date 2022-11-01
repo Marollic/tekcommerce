@@ -29,9 +29,7 @@ const SplashScreen = ({ navigation }: SplashNavigationProps) => {
         style={styles.image}>
         <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
           <View style={styles.view}>
-            <Image source={lgo} style={{ margin: 30 }} />
-          </View>
-          <View style={styles.Middle}>
+            <Image source={lgo} resizeMode='center'  />
             <ActivityIndicator
               animating={animating}
               color={'#000000'}
@@ -50,12 +48,7 @@ export default SplashScreen
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    justifyContent: 'flex-start',
-  },
-  Middle: {
-    flex: 5,
-    alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
   image: {
     flex: 1,
@@ -64,6 +57,6 @@ const styles = StyleSheet.create({
   },
   activityIndicator: {
     alignItems: 'center',
-    height: 100,
+    height: 50,
   },
 });
