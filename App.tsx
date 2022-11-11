@@ -1,6 +1,6 @@
 import { TailwindProvider } from "tailwind-rn/dist";
 import utilities from './tailwind.json'
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider, StatusBar } from 'native-base';
 import { NavigationContainer } from '@react-navigation/native'
 import RootNavigator from "./src/navigator/RootNavigator";
 
@@ -11,6 +11,7 @@ export default function App() {
         <NavigationContainer>
           <RootNavigator />
         </NavigationContainer>
+        <StatusBar barStyle="dark-content" backgroundColor="#f000"/>
       </NativeBaseProvider >
     </TailwindProvider>
   );

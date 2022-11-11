@@ -29,7 +29,7 @@ const SplashScreen = ({ navigation }: SplashNavigationProps) => {
         style={styles.image}>
         <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
           <View style={styles.view}>
-            <Image source={lgo} resizeMode='center'  />
+            <Image source={lgo} resizeMode='center' style={{margin:-30}}  />
             <ActivityIndicator
               animating={animating}
               color={'#000000'}

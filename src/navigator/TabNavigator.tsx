@@ -1,4 +1,5 @@
 import { View, Text } from 'react-native'
+import { Image } from 'native-base'
 import React, { useLayoutEffect } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
@@ -7,7 +8,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProdutosScreen from '../screens/ProdutosScreen';
 import CarrinhoScreen from '../screens/CarrinhoScreen';
 import PedidosScreen from '../screens/PedidosScreen';
-import NavigationTabHeader from './NavigatorTabHeader';
+import NavigationTabHeader from '../component/NavigatorTabHeader';
 
 export type TabStackParamList = {
   Home: undefined;
@@ -18,18 +19,19 @@ export type TabStackParamList = {
 
 const Tab = createBottomTabNavigator<TabStackParamList>();
 
+const lgo = require('../images/Logo_Home.png');
+
 const TabNavigator = () => {
   const navigation = useNavigation();
 
-  useLayoutEffect(() => {
-    navigation.setOptions({ headerShown: false })
-  }, []);
+  // useLayoutEffect(() => {
+  //   navigation.setOptions({ headerShown: false })
+  // }, []);
 
   return (
     <Tab.Navigator screenOptions={({ route }) => ({
       tabBarActiveTintColor: "#9921E8",
       tabBarInactiveTintColor: "gray",
-
       tabBarIcon: ({ focused, color, size }) => {
         if (route.name == 'Home') {
           return (
@@ -64,20 +66,10 @@ const TabNavigator = () => {
     })}>
       <Tab.Screen
         name='Home'
-        options={{
-          headerLeft: () => (
-            <NavigationTabHeader navigationProps={navigation} />
-          ),
-        }}
         component={HomeScreen}
       />
       <Tab.Screen
         name='Produtos'
-        options={{
-          headerLeft: () => (
-            <NavigationTabHeader navigationProps={navigation} />
-          ),
-        }}
         component={ProdutosScreen}
       />
       <Tab.Screen
@@ -91,11 +83,6 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name='Pedidos'
-        options={{
-          headerLeft: () => (
-            <NavigationTabHeader navigationProps={navigation} />
-          ),
-        }}
         component={PedidosScreen}
       />
     </Tab.Navigator>
