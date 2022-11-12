@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image, ActivityIndicator, SafeAreaView } from 'react-native'
+import { View, StyleSheet, Image, ActivityIndicator } from 'react-native'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../navigator/RootNavigator'
@@ -27,9 +27,11 @@ const SplashScreen = ({ navigation }: SplashNavigationProps) => {
       <ImgBackground source={img}
         resizeMode={'cover'}
         style={styles.image}>
-        <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
-          <View style={styles.view}>
-            <Image source={lgo} resizeMode='center' style={{margin:-30}}  />
+        <View style={styles.view}>
+          <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+            <Image source={lgo} resizeMode='contain' style={{ height: '75%' }} />
+          </View>
+          <View style={{ flex: 5, justifyContent: 'center' }}>
             <ActivityIndicator
               animating={animating}
               color={'#000000'}
@@ -37,7 +39,7 @@ const SplashScreen = ({ navigation }: SplashNavigationProps) => {
               style={styles.activityIndicator}
             />
           </View>
-        </SafeAreaView>
+        </View>
       </ImgBackground>
     </View>
   )
@@ -54,6 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'relative',
   },
   activityIndicator: {
     alignItems: 'center',

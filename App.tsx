@@ -11,7 +11,7 @@ export default function App() {
         <NavigationContainer>
           <RootNavigator />
         </NavigationContainer>
-        <StatusBar barStyle="dark-content" backgroundColor="#f000"/>
+        <StatusBar barStyle="dark-content" translucent backgroundColor="transparent" />
       </NativeBaseProvider >
     </TailwindProvider>
   );
