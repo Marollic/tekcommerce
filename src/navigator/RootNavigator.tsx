@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AuthNavigator from './AuthNavigator';
 import SplashScreen from '../screens/SplashScreen';
 import DrawerNavigator from './DrawerNavigator';
+import ModalScreen from '../screens/ModalScreen';
 
 export type RootStackParamList = {
     Auth: undefined;
@@ -26,6 +27,16 @@ const RootNavigator = () => {
 
             <RootStack.Group>
                 <RootStack.Screen name='Main' component={DrawerNavigator} />
+            </RootStack.Group>
+
+            <RootStack.Group>
+                <RootStack.Screen 
+                options={{ headerShown: false, presentation: 'modal', }} 
+                
+                name='MyModal' 
+                component={ModalScreen} 
+                
+                />
             </RootStack.Group>
         </RootStack.Navigator>
     )
