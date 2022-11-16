@@ -5,18 +5,18 @@ import { HomeScreenNavigationProp } from '../screens/HomeScreen';
 
 const { height, width } = Dimensions.get('window');
 
-const HomeProductCard = ({ thumbnail, brand, description, stock, price }: any) => {
+const HomeProductCard = ({ product }: any) => {
     const navigation = useNavigation<HomeScreenNavigationProp>();
     return (<View style={styles.viewCard}>
-        <TouchableOpacity onPress={()=> navigation.navigate('MyModal')}>
-            <Image source={{ uri: thumbnail }} resizeMode='contain' style={{ height: 140, borderRadius: 5, width: width * 0.35, alignSelf: 'center', margin: 5 }} />
+        <TouchableOpacity onPress={() => navigation.navigate('MyModal', { product })}>
+            <Image source={{ uri: product.thumbnail }} resizeMode='contain' style={{ height: 140, borderRadius: 5, width: width * 0.35, alignSelf: 'center', margin: 5 }} />
             <View style={{ alignItems: 'flex-start', margin: 5 }}>
-                <Text>Marca: {brand}</Text>
-                <Text>Descricao: {description}</Text>
+                <Text>Marca: {product.brand}</Text>
+                <Text>Descricao: {product.description}</Text>
             </View>
             <View style={{ justifyContent: 'space-between', flexDirection: 'row', margin: 5 }}>
-                <Text>Preco: {price}</Text>
-                <Text>Stock: {stock}</Text>
+                <Text>Price: {product.price}</Text>
+                <Text>Stock: {product.stock}</Text>
             </View>
         </TouchableOpacity>
     </View>)

@@ -8,7 +8,7 @@ import ModalScreen from '../screens/ModalScreen';
 export type RootStackParamList = {
     Auth: undefined;
     Main: undefined;
-    MyModal: undefined;
+    MyModal: { product: any };
     Splash: undefined;
 }
 
@@ -29,12 +29,8 @@ const RootNavigator = () => {
                 <RootStack.Screen name='Main' component={DrawerNavigator} />
             </RootStack.Group>
 
-            <RootStack.Group
-                screenOptions={{
-                    presentation: 'modal',
-                }}>
+            <RootStack.Group>
                 <RootStack.Screen
-                    options={{ headerShown: false }}
                     name='MyModal'
                     component={ModalScreen}
                 />

@@ -92,11 +92,7 @@ const HomeScreen = ({ navigation }: any) => {
           item.title.includes(input)
         )?.map((item: any) => (<HomeProductCard
           key={item.id}
-          thumbnail={item.thumbnail}
-          brand={item.brand}
-          description={item.description}
-          stock={item.stock}
-          price={item.price}
+          product={item}
         />))}
 
       </ScrollView>

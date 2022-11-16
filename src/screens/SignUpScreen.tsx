@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState, createRef } from 'react';
-import { View, StyleSheet, TouchableOpacity, SafeAreaView, Keyboard } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Keyboard } from 'react-native';
 import { CompositeNavigationProp, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Button, Icon, Input, Text, Image, KeyboardAvoidingView, ScrollView } from 'native-base';
@@ -8,18 +8,17 @@ import ImgBackground from '../component/ImgBackground';
 import { AuthStackParamList } from '../navigator/AuthNavigator';
 import { RootStackParamList } from '../navigator/RootNavigator';
 import Loader from '../component/Loader';
-import { flexbox } from 'native-base/lib/typescript/theme/styled-system';
 
 const img = require('../images/background_login.png');
 const lgo = require('../images/Logo.png');
 const lgoSucess = require('../images/success.png');
 
 
-type Tst = CompositeNavigationProp<StackNavigationProp<RootStackParamList>, StackNavigationProp<AuthStackParamList, 'SignUp'>>;
+type SignUpNavigationProp = CompositeNavigationProp<StackNavigationProp<RootStackParamList>, StackNavigationProp<AuthStackParamList, 'SignUp'>>;
 
 const SignUpScreen = () => {
 
-    const navigation = useNavigation<Tst>();
+    const navigation = useNavigation<SignUpNavigationProp>();
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -149,7 +148,7 @@ const SignUpScreen = () => {
             resizeMode='cover'
             style={styles.image}>
 
-            <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center' }}>
 
                 <Loader loading={loading} />
 
@@ -342,7 +341,7 @@ const SignUpScreen = () => {
                         </KeyboardAvoidingView>
                     </View>
                 </ScrollView>
-            </SafeAreaView>
+            </View>
         </ImgBackground>
 
     )
