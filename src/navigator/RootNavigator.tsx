@@ -29,13 +29,14 @@ const RootNavigator = () => {
                 <RootStack.Screen name='Main' component={DrawerNavigator} />
             </RootStack.Group>
 
-            <RootStack.Group>
-                <RootStack.Screen 
-                options={{ headerShown: false, presentation: 'modal', }} 
-                
-                name='MyModal' 
-                component={ModalScreen} 
-                
+            <RootStack.Group
+                screenOptions={{
+                    presentation: 'modal',
+                }}>
+                <RootStack.Screen
+                    options={{ headerShown: false }}
+                    name='MyModal'
+                    component={ModalScreen}
                 />
             </RootStack.Group>
         </RootStack.Navigator>
