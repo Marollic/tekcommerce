@@ -87,7 +87,7 @@ const HomeScreen = ({ navigation }: any) => {
           />
         </View>
       </View>
-      <ScrollView style={{ margin: 2 }}>
+      <ScrollView style={{ marginTop: 2 }}>
         {data?.filter((item: any) =>
           item.title.includes(input)
         )?.map((item: any) => (<HomeProductCard
@@ -105,7 +105,6 @@ export default HomeScreen
 const styles = StyleSheet.create({
   emailInput: {
     marginTop: 10,
-    marginRight: 5
   },
   buttonStyle: {
     marginTop: 30,

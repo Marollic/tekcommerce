@@ -1,12 +1,12 @@
-import { View, Text, TouchableOpacity, Image, Button } from 'react-native'
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Icon } from '@rneui/base'
-import { useRoute } from '@react-navigation/native'
-import { Input } from 'native-base'
+import { Input, Button } from 'native-base'
 
 
-const ModalScreen = ({ navigation }: any) => {
-  const { params: { product } }: any = useRoute();
+const ModalScreen = ({ navigation, route }: any) => {
+
+  const { params: { product } }: any = route;
   useEffect(() => {
     navigation.setOptions({
       title: `${product.title}`,
@@ -20,14 +20,13 @@ const ModalScreen = ({ navigation }: any) => {
   const [input, setInput] = useState(1);
   return (
     <View style={{ flex: 1 }}>
-      <View>
+      <View style={{ width: '100%' }}>
         <Image
           source={{ uri: product.thumbnail }}
-          resizeMode='contain'
+          resizeMode='cover'
           style={{
             height: 200,
             width: '100%',
-            borderRadius: 1,
             alignSelf: 'center',
           }}
         />
@@ -46,7 +45,7 @@ const ModalScreen = ({ navigation }: any) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ flex: 3, justifyContent: 'flex-end' }}>
+        <View style={{ flex: 6, justifyContent: 'flex-end', borderWidth: 0 }}>
           <Input
             style={{
               fontSize: 18,
@@ -54,6 +53,7 @@ const ModalScreen = ({ navigation }: any) => {
               textAlign: 'center',
               borderColor: '#9921E8',
               color: '#9921E8',
+              borderRadius: 15,
             }}
             placeholder='quantidade'
             onChangeText={() => setInput}
@@ -68,12 +68,33 @@ const ModalScreen = ({ navigation }: any) => {
         </View>
       </View>
 
-      <View >
-        <Button title='ADD TO CART' color={'#9921E8'} />
+
+      {/* Button */}
+      <View style={styles.buttonStyle}>
+        <Button
+          style={styles.buttonDesign}
+        >
+          ATUALIZAR DADOS
+        </Button>
       </View>
+
 
     </View >
   )
 }
 
 export default ModalScreen
+
+const styles = StyleSheet.create({
+  buttonStyle: {
+    marginTop: 30,
+    height: '10%',
+    justifyContent: 'flex-end',
+  },
+  buttonDesign: {
+    backgroundColor: '#9921E8',
+    borderRadius: 0,
+    fontSize: 28,
+    height: '100%'
+  },
+})

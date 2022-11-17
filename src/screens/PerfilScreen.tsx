@@ -137,285 +137,284 @@ const PerfilScreen = ({ navigation }: any) => {
 
   return (
 
-    <View style={{ flex: 1, justifyContent: 'center' }}>
+    <View style={{ flex: 1 }}>
 
       <Loader loading={loading} />
 
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
-          justifyContent: 'center',
           alignContent: 'center',
           flex: 1,
         }}>
 
 
-        <View style={{ flex: 1, }}>
-          <KeyboardAvoidingView enabled>
 
-            {/* Username Input Field */}
-            <View style={styles.buttonStyle}>
 
-              <View style={styles.emailInput}>
-                <Input
-                  InputLeftElement={
-                    <Icon
-                      as={<FontAwesome5 name="user-secret" />}
-                      size="sm"
-                      m={2}
-                      _light={{
-                        color: "black",
-                      }}
-                      _dark={{
-                        color: "gray.300",
-                      }}
-                    />
-                  }
-                  variant="outline"
-                  placeholder="Nome de usuario"
-                  onChangeText={setUserName}
-                  value={`${userName}`}
-                  underlineColorAndroid="#f000"
-                  _light={{
-                    placeholderTextColor: "blueGray.400",
-                  }}
-                  _dark={{
-                    placeholderTextColor: "blueGray.50",
-                  }}
-                  autoCapitalize="sentences"
-                  returnKeyType="next"
-                  onSubmitEditing={() =>
-                    ageInputRef.current && ageInputRef.current.focus()
-                  }
-                  blurOnSubmit={false}
-                />
-              </View>
+        <KeyboardAvoidingView enabled>
+
+          {/* Username Input Field */}
+          <View style={styles.buttonStyleX}>
+
+            <View style={styles.emailInput}>
+              <Input
+                InputLeftElement={
+                  <Icon
+                    as={<FontAwesome5 name="user-secret" />}
+                    size="sm"
+                    m={2}
+                    _light={{
+                      color: "black",
+                    }}
+                    _dark={{
+                      color: "gray.300",
+                    }}
+                  />
+                }
+                variant="outline"
+                placeholder="Nome de usuario"
+                onChangeText={setUserName}
+                value={`${userName}`}
+                underlineColorAndroid="#f000"
+                _light={{
+                  placeholderTextColor: "blueGray.400",
+                }}
+                _dark={{
+                  placeholderTextColor: "blueGray.50",
+                }}
+                autoCapitalize="sentences"
+                returnKeyType="next"
+                onSubmitEditing={() =>
+                  ageInputRef.current && ageInputRef.current.focus()
+                }
+                blurOnSubmit={false}
+              />
             </View>
+          </View>
 
 
-            {/* Age  Input Field */}
-            <View style={styles.buttonStyleX}>
+          {/* Age  Input Field */}
+          <View style={styles.buttonStyleX}>
 
-              <View style={styles.emailInput}>
-                <Input
-                  InputLeftElement={
-                    <Icon
-                      as={<MaterialCommunityIcons name="numeric" />}
-                      size="sm"
-                      m={2}
-                      _light={{
-                        color: "black",
-                      }}
-                      _dark={{
-                        color: "gray.300",
-                      }}
-                    />
-                  }
-                  variant="outline"
-                  placeholder="idade"
-                  _light={{
-                    placeholderTextColor: "blueGray.400",
-                  }}
-                  _dark={{
-                    placeholderTextColor: "blueGray.50",
-                  }}
-                  onChangeText={setAge}
-                  value={`${age}`}
-                  underlineColorAndroid="#f000"
-                  keyboardType='numeric'
-                  ref={ageInputRef}
-                  returnKeyType="next"
-                  onSubmitEditing={() =>
-                    emailInputRef.current &&
-                    emailInputRef.current.focus()
-                  }
-                  blurOnSubmit={false}
-                />
-              </View>
+            <View style={styles.emailInput}>
+              <Input
+                InputLeftElement={
+                  <Icon
+                    as={<MaterialCommunityIcons name="numeric" />}
+                    size="sm"
+                    m={2}
+                    _light={{
+                      color: "black",
+                    }}
+                    _dark={{
+                      color: "gray.300",
+                    }}
+                  />
+                }
+                variant="outline"
+                placeholder="idade"
+                _light={{
+                  placeholderTextColor: "blueGray.400",
+                }}
+                _dark={{
+                  placeholderTextColor: "blueGray.50",
+                }}
+                onChangeText={setAge}
+                value={`${age}`}
+                underlineColorAndroid="#f000"
+                keyboardType='numeric'
+                ref={ageInputRef}
+                returnKeyType="next"
+                onSubmitEditing={() =>
+                  emailInputRef.current &&
+                  emailInputRef.current.focus()
+                }
+                blurOnSubmit={false}
+              />
             </View>
+          </View>
 
-            {/* Email Input Field */}
-            <View style={styles.buttonStyleX}>
+          {/* Email Input Field */}
+          <View style={styles.buttonStyleX}>
 
-              <View style={styles.emailInput}>
-                <Input
-                  InputLeftElement={
-                    <Icon
-                      as={<MaterialCommunityIcons name="email" />}
-                      size="sm"
-                      m={2}
-                      _light={{
-                        color: "black",
-                      }}
-                      _dark={{
-                        color: "gray.300",
-                      }}
-                    />
-                  }
-                  variant="outline"
-                  placeholder="E-mail"
-                  _light={{
-                    placeholderTextColor: "blueGray.400",
-                  }}
-                  _dark={{
-                    placeholderTextColor: "blueGray.50",
-                  }}
-                  onChangeText={setUserEmail}
-                  value={`${userEmail}`}
-                  underlineColorAndroid="#f000"
-                  keyboardType="email-address"
-                  ref={emailInputRef}
-                  returnKeyType="next"
-                  onSubmitEditing={() =>
-                    addressInputRef.current &&
-                    addressInputRef.current.focus()
-                  }
-                  blurOnSubmit={false}
-                />
-              </View>
+            <View style={styles.emailInput}>
+              <Input
+                InputLeftElement={
+                  <Icon
+                    as={<MaterialCommunityIcons name="email" />}
+                    size="sm"
+                    m={2}
+                    _light={{
+                      color: "black",
+                    }}
+                    _dark={{
+                      color: "gray.300",
+                    }}
+                  />
+                }
+                variant="outline"
+                placeholder="E-mail"
+                _light={{
+                  placeholderTextColor: "blueGray.400",
+                }}
+                _dark={{
+                  placeholderTextColor: "blueGray.50",
+                }}
+                onChangeText={setUserEmail}
+                value={`${userEmail}`}
+                underlineColorAndroid="#f000"
+                keyboardType="email-address"
+                ref={emailInputRef}
+                returnKeyType="next"
+                onSubmitEditing={() =>
+                  addressInputRef.current &&
+                  addressInputRef.current.focus()
+                }
+                blurOnSubmit={false}
+              />
             </View>
+          </View>
 
-            {/* Address Input Field */}
-            <View style={styles.buttonStyleX}>
+          {/* Address Input Field */}
+          <View style={styles.buttonStyleX}>
 
-              <View style={styles.emailInput}>
-                <Input
-                  InputLeftElement={
-                    <Icon
-                      as={<Entypo name="address" />}
-                      size="sm"
-                      m={2}
-                      _light={{
-                        color: "black",
-                      }}
-                      _dark={{
-                        color: "gray.300",
-                      }}
-                    />
-                  }
-                  variant="outline"
-                  placeholder="Address"
-                  _light={{
-                    placeholderTextColor: "blueGray.400",
-                  }}
-                  _dark={{
-                    placeholderTextColor: "blueGray.50",
-                  }}
-                  onChangeText={setAddress}
-                  value={`${address}`}
-                  underlineColorAndroid="#f000"
-                  keyboardType='default'
-                  ref={addressInputRef}
-                  returnKeyType="next"
-                  onSubmitEditing={() =>
-                    passwordInputRef.current &&
-                    passwordInputRef.current.focus()
-                  }
-                  blurOnSubmit={false}
-                />
-              </View>
+            <View style={styles.emailInput}>
+              <Input
+                InputLeftElement={
+                  <Icon
+                    as={<Entypo name="address" />}
+                    size="sm"
+                    m={2}
+                    _light={{
+                      color: "black",
+                    }}
+                    _dark={{
+                      color: "gray.300",
+                    }}
+                  />
+                }
+                variant="outline"
+                placeholder="Address"
+                _light={{
+                  placeholderTextColor: "blueGray.400",
+                }}
+                _dark={{
+                  placeholderTextColor: "blueGray.50",
+                }}
+                onChangeText={setAddress}
+                value={`${address}`}
+                underlineColorAndroid="#f000"
+                keyboardType='default'
+                ref={addressInputRef}
+                returnKeyType="next"
+                onSubmitEditing={() =>
+                  passwordInputRef.current &&
+                  passwordInputRef.current.focus()
+                }
+                blurOnSubmit={false}
+              />
             </View>
+          </View>
 
-            {/* Password Input Field */}
-            <View style={styles.buttonStyleX}>
+          {/* Password Input Field */}
+          <View style={styles.buttonStyleX}>
 
-              <View style={styles.emailInput}>
-                <Input
-                  InputLeftElement={
-                    <Icon
-                      as={<FontAwesome5 name="key" />}
-                      size="sm"
-                      m={2}
-                      _light={{
-                        color: "black",
-                      }}
-                      _dark={{
-                        color: "gray.300",
-                      }}
-                    />
-                  }
-                  variant="outline"
-                  secureTextEntry={true}
-                  placeholder="Senha"
-                  _light={{
-                    placeholderTextColor: "blueGray.400",
-                  }}
-                  _dark={{
-                    placeholderTextColor: "blueGray.50",
-                  }}
-                  onChangeText={setUserPassword}
-                  value={`${userPassword}`}
-                  underlineColorAndroid="#f000"
-                  ref={passwordInputRef}
-                  returnKeyType="next"
-                  onSubmitEditing={() =>
-                    passwordConfirmInputRef.current &&
-                    passwordConfirmInputRef.current.focus()
-                  }
-                  blurOnSubmit={false}
-                />
-              </View>
+            <View style={styles.emailInput}>
+              <Input
+                InputLeftElement={
+                  <Icon
+                    as={<FontAwesome5 name="key" />}
+                    size="sm"
+                    m={2}
+                    _light={{
+                      color: "black",
+                    }}
+                    _dark={{
+                      color: "gray.300",
+                    }}
+                  />
+                }
+                variant="outline"
+                secureTextEntry={true}
+                placeholder="Senha"
+                _light={{
+                  placeholderTextColor: "blueGray.400",
+                }}
+                _dark={{
+                  placeholderTextColor: "blueGray.50",
+                }}
+                onChangeText={setUserPassword}
+                value={`${userPassword}`}
+                underlineColorAndroid="#f000"
+                ref={passwordInputRef}
+                returnKeyType="next"
+                onSubmitEditing={() =>
+                  passwordConfirmInputRef.current &&
+                  passwordConfirmInputRef.current.focus()
+                }
+                blurOnSubmit={false}
+              />
             </View>
+          </View>
 
-            {/* Password Input Field */}
-            <View style={styles.buttonStyleX}>
+          {/* Password Input Field */}
+          <View style={styles.buttonStyleX}>
 
-              <View style={styles.emailInput}>
-                <Input
-                  InputLeftElement={
-                    <Icon
-                      as={<FontAwesome5 name="key" />}
-                      size="sm"
-                      m={2}
-                      _light={{
-                        color: "black",
-                      }}
-                      _dark={{
-                        color: "gray.300",
-                      }}
-                    />
-                  }
-                  variant="outline"
-                  secureTextEntry={true}
-                  placeholder="Confirmar Senha"
-                  _light={{
-                    placeholderTextColor: "blueGray.400",
-                  }}
-                  _dark={{
-                    placeholderTextColor: "blueGray.50",
-                  }}
-                  onChangeText={setUserPasswordConfirm}
-                  value={`${userPasswordConfirm}`}
-                  underlineColorAndroid="#f000"
-                  ref={passwordConfirmInputRef}
-                  returnKeyType="next"
-                  onSubmitEditing={Keyboard.dismiss}
-                  blurOnSubmit={false}
-                />
-              </View>
+            <View style={styles.emailInput}>
+              <Input
+                InputLeftElement={
+                  <Icon
+                    as={<FontAwesome5 name="key" />}
+                    size="sm"
+                    m={2}
+                    _light={{
+                      color: "black",
+                    }}
+                    _dark={{
+                      color: "gray.300",
+                    }}
+                  />
+                }
+                variant="outline"
+                secureTextEntry={true}
+                placeholder="Confirmar Senha"
+                _light={{
+                  placeholderTextColor: "blueGray.400",
+                }}
+                _dark={{
+                  placeholderTextColor: "blueGray.50",
+                }}
+                onChangeText={setUserPasswordConfirm}
+                value={`${userPasswordConfirm}`}
+                underlineColorAndroid="#f000"
+                ref={passwordConfirmInputRef}
+                returnKeyType="next"
+                onSubmitEditing={Keyboard.dismiss}
+                blurOnSubmit={false}
+              />
             </View>
+          </View>
+        </KeyboardAvoidingView>
 
-            {errortext != '' ? (
-              <Text style={styles.errorTextStyle}>
-                {errortext}
-              </Text>
-            ) : null}
+        {errortext != '' ? (
+          <Text style={styles.errorTextStyle}>
+            {errortext}
+          </Text>
+        ) : null}
 
-            {/* Button */}
-            <View style={styles.buttonStyle}>
-              <Button
-                style={styles.buttonDesign}
-                onPress={handleSubmitButton}
-              >
-                ATUALIZAR DADOS
-              </Button>
-            </View>
-          </KeyboardAvoidingView>
+        {/* Button */}
+        <View style={styles.buttonStyle}>
+          <Button
+            style={styles.buttonDesign}
+            onPress={handleSubmitButton}
+          >
+            ATUALIZAR DADOS
+          </Button>
         </View>
+
+
       </ScrollView>
     </View>
-
-
   )
 }
 
@@ -430,18 +429,21 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 5
   },
-  buttonStyle: {
-    marginTop: 30,
-    marginLeft: 15,
-    marginRight: 15,
-  },
   buttonStyleX: {
     marginTop: 12,
     marginLeft: 15,
     marginRight: 15
   },
+  buttonStyle: {
+    margin: 15,
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
   buttonDesign: {
-    backgroundColor: '#9921E8'
+    backgroundColor: '#9921E8',
+    borderRadius: 5,
+    fontSize: 28,
+    height: '20%'
   },
   errorTextStyle: {
     color: 'red',
