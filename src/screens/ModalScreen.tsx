@@ -1,13 +1,22 @@
-import { View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Image, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Icon } from '@rneui/base'
 import { useRoute } from '@react-navigation/native'
-import { Flex, Input } from 'native-base'
+import { Input } from 'native-base'
 
 
 const ModalScreen = ({ navigation }: any) => {
   const { params: { product } }: any = useRoute();
-  useEffect(() => { navigation.setOptions({ title: `${product.title}`, alignSelf: 'center' }) }, []);
+  useEffect(() => {
+    navigation.setOptions({
+      title: `${product.title}`,
+      alignSelf: 'center',
+      headerTintColor: '#FFFF',
+      headerStyle: {
+        backgroundColor: '#9921E8'
+      }
+    })
+  }, []);
   const [input, setInput] = useState(1);
   return (
     <View style={{ flex: 1 }}>
@@ -30,21 +39,38 @@ const ModalScreen = ({ navigation }: any) => {
       </View>
 
       <View style={{ flex: 1, flexDirection: 'row', margin: 20, alignItems: 'center' }}>
+
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <TouchableOpacity onPress={() => { setInput(input <= 1 ? 0 : input - 1) }}>
-            <Icon name='minuscircle' type='antdesign' size={32} />
+            <Icon name='minuscircle' type='antdesign' size={32} color='#9921E8' />
           </TouchableOpacity>
         </View>
+
         <View style={{ flex: 3, justifyContent: 'flex-end' }}>
-          <Input style={{ fontSize: 18, borderWidth: 1, textAlign: 'center' }} placeholder='quantidade' defaultValue='1' onChangeText={() => setInput} value={`${input}`} />
+          <Input
+            style={{
+              fontSize: 18,
+              borderWidth: 1,
+              textAlign: 'center',
+              borderColor: '#9921E8',
+              color: '#9921E8',
+            }}
+            placeholder='quantidade'
+            onChangeText={() => setInput}
+            value={`${input}`}
+          />
         </View>
+
         <View style={{ flex: 1, justifyContent: 'flex-end' }} >
-          <TouchableOpacity onPress={() => { setInput(input + 1) }}>
-            <Icon name='pluscircle' type='antdesign' size={32} />
+          <TouchableOpacity onPress={() => { setInput(input >= product.stock ? input : input + 1) }}>
+            <Icon name='pluscircle' type='antdesign' size={32} color='#9921E8' />
           </TouchableOpacity>
         </View>
       </View>
 
+      <View >
+        <Button title='ADD TO CART' color={'#9921E8'} />
+      </View>
 
     </View >
   )

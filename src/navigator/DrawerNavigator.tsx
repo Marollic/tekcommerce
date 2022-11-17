@@ -24,7 +24,7 @@ const DrawerNavigator = () => {
             useLegacyImplementation
             initialRouteName="Inicio"
             drawerContent={CustomSideDrawerMenu}
-            screenOptions={{ drawerActiveTintColor: 'white', drawerInactiveTintColor: 'black' }}
+            screenOptions={{ drawerActiveTintColor: 'white', drawerInactiveTintColor: 'black', headerTintColor: 'white', headerStyle: { backgroundColor: '#9921E8' } }}
         >
             <DrawerNavigatorScreen.Screen
                 name='Perfil'
@@ -48,7 +48,8 @@ const DrawerNavigator = () => {
                         }
                         return <Text style={{
                             fontSize: 18,
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            color: 'white',
                         }}>{routeName}</Text>
                     },
                 }}
