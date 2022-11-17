@@ -45,7 +45,7 @@ const ModalScreen = ({ navigation, route }: any) => {
           </TouchableOpacity>
         </View>
 
-        <View style={{ flex: 6, justifyContent: 'flex-end', borderWidth: 0 }}>
+        <View style={{ flex: 6, justifyContent: 'flex-end' }}>
           <Input
             style={{
               fontSize: 18,

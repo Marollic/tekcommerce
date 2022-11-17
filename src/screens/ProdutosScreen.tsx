@@ -1,7 +1,8 @@
 import React, { useLayoutEffect, useState, createRef } from 'react';
-import { View, StyleSheet, Keyboard } from 'react-native';
+import { View, StyleSheet, Keyboard, TouchableOpacity, Image, FlatList } from 'react-native';
 import { Button, Icon, Text, KeyboardAvoidingView, ScrollView, Input } from 'native-base';
-import { Entypo, FontAwesome5, MaterialCommunityIcons, MaterialIcons, Octicons } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, Octicons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../component/Loader';
 
@@ -24,7 +25,7 @@ const ProdutosScreen = ({ navigation }: any) => {
   const [brand, setBrand] = useState('');
   const [category, setCategory] = useState('');
   const [thumbnail, setThumbnail] = useState('');
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(Array<any>);
 
   useLayoutEffect(() => {
     AsyncStorage.getItem('user_id').then((value) => {
@@ -50,7 +51,7 @@ const ProdutosScreen = ({ navigation }: any) => {
     navigation.setOptions({
       headerShown: false,
     });
-  }, [userName]);
+  }, [title]);
 
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
@@ -66,28 +67,39 @@ const ProdutosScreen = ({ navigation }: any) => {
   const handleSubmitButton = () => {
 
     setErrortext('');
-    if (!userName) {
-      alert('Por favor infore o nome');
+    if (!title) {
+      alert('Por favor infore o nome do produto');
       return;
     }
-    if (!age || parseInt(age) < 1) {
-      alert('Por favor sua idade');
+    if (!description) {
+      alert('Por favor infore a descricao do produto');
       return;
     }
-    if (!userEmail) {
-      alert('Por favor informe o e-mail');
+    if (!price || parseFloat(price) <= 0) {
+      alert('Por favor informe o valor do produto');
       return;
     }
-    if (!address) {
-      alert('Por favor informe seu endereco');
+    if (parseFloat(discountPercentage) > 100) {
+      alert('O percentual de desconto nao pode ser superior a 100%');
       return;
     }
-    if (!userPassword) {
-      alert('Por favor informe a senha');
+    if (!rating || parseFloat(rating) < 1 || parseFloat(rating) > 5) {
+      alert('Por favor atribuir um nota de 1 a 5');
       return;
     }
-    if (userPasswordConfirm !== userPassword) {
-      alert('Senhas nao conferem');
+
+    if (!stock || parseFloat(stock) < 0) {
+      alert('Por favor informe o saldo em estoque');
+      return;
+    }
+
+    if (!brand) {
+      alert('Por favor informe a marca do produto');
+      return;
+    }
+
+    if (!category) {
+      alert('Por favor informe a categoria do produto');
       return;
     }
 
@@ -142,6 +154,68 @@ const ProdutosScreen = ({ navigation }: any) => {
       });
   };
 
+  const showImagePicker = async () => {
+    // Ask the user for the permission to access the media library 
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your photos!");
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      let obj = images
+      obj.push(result.uri)
+      setImages(obj);
+    }
+  }
+
+  // This function is triggered when the "Open camera" button pressed
+  const openCamera = async () => {
+    // Ask the user for the permission to access the camera
+    const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      alert("You've refused to allow this appp to access your camera!");
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync();
+
+    // Explore the result
+    console.log(result);
+
+    if (!result.cancelled) {
+      let obj = images
+      obj.push(result.uri)
+      setImages(obj);
+      console.log(obj);
+    }
+  }
+
+  const renderItem = ({ item }: any) => {
+    console.log('reder ')
+    return (
+      <View>
+        <Image
+          source={{ uri: item }}
+          resizeMode='contain'
+          style={{
+            width: 200,
+            height: 200,
+            margin: 15,
+            borderRadius: 5,
+          }}
+        />
+      </View>
+    );
+  };
+
 
   return (
 
@@ -159,7 +233,6 @@ const ProdutosScreen = ({ navigation }: any) => {
 
         <KeyboardAvoidingView enabled>
           <ScrollView>
-
             {/* Product Input Field */}
             <View style={styles.buttonStyleX}>
 
@@ -483,24 +556,45 @@ const ProdutosScreen = ({ navigation }: any) => {
               </View>
             </View>
 
+            {images.length > 0 ?
+              (<ScrollView style={{ flexDirection: 'row' }}>
+                <FlatList contentContainerStyle={{ flexDirection: 'row', margin: 15 }}
+                  data={images}
+                  renderItem={renderItem}
+                  keyExtractor={({ item }: any) => item}
+                />
+              </ScrollView>) : null
+            }
+
+            <View style={styles.btnParentSection}>
+
+              <TouchableOpacity onPress={openCamera} style={styles.btnSection}  >
+                <Text style={styles.btnText}>Abrir Camera</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={showImagePicker} style={styles.btnSection}  >
+                <Text style={styles.btnText}>Galleria de Images</Text>
+              </TouchableOpacity>
+            </View>
+
+            {errortext != '' ? (
+              <Text style={styles.errorTextStyle}>
+                {errortext}
+              </Text>
+            ) : null}
+
+            {/* Button */}
+            <View style={styles.buttonStyle}>
+              <Button
+                style={styles.buttonDesign}
+                onPress={handleSubmitButton}
+              >
+                ATUALIZAR DADOS
+              </Button>
+            </View>
+
           </ScrollView>
         </KeyboardAvoidingView>
-
-        {errortext != '' ? (
-          <Text style={styles.errorTextStyle}>
-            {errortext}
-          </Text>
-        ) : null}
-
-        {/* Button */}
-        <View style={styles.buttonStyle}>
-          <Button
-            style={styles.buttonDesign}
-            onPress={handleSubmitButton}
-          >
-            ATUALIZAR DADOS
-          </Button>
-        </View>
 
       </ScrollView>
     </View>
@@ -537,5 +631,24 @@ const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     fontSize: 14,
+  },
+  btnParentSection: {
+    alignItems: 'center',
+    marginTop: 15
+  },
+  btnSection: {
+    width: 225,
+    height: 50,
+    backgroundColor: '#DCDCDC',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 3,
+    marginBottom: 15
+  },
+  btnText: {
+    textAlign: 'center',
+    color: 'gray',
+    fontSize: 14,
+    fontWeight: 'bold'
   },
 });
