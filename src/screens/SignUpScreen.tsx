@@ -136,7 +136,7 @@ const SignUpScreen = () => {
                     style={styles.buttonStyle}
                     activeOpacity={0.5}
                     onPress={() => navigation.navigate('Login')}>
-                    <Text style={[styles.buttonTextStyle, {alignSelf: 'center'}]}>Login agora!</Text>
+                    <Text style={[styles.buttonTextStyle, { alignSelf: 'center' }]}>Login agora!</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -329,6 +329,12 @@ const SignUpScreen = () => {
                                 </View>
                             </View>
 
+                            {errortext != '' ? (
+                                <Text style={styles.errorTextStyle}>
+                                    {errortext}
+                                </Text>
+                            ) : null}
+
                             {/* Button */}
                             <View style={styles.buttonStyle}>
                                 <Button
@@ -375,10 +381,6 @@ const styles = StyleSheet.create({
     signupText: {
         fontWeight: 'bold'
     },
-    emailField: {
-        marginTop: 30,
-        marginLeft: 15
-    },
     emailInput: {
         marginTop: 10,
         marginRight: 5
@@ -406,5 +408,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 18,
         padding: 30,
+    },
+    errorTextStyle: {
+        color: 'red',
+        textAlign: 'center',
+        fontSize: 14,
     },
 });
