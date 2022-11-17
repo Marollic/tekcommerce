@@ -443,7 +443,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#9921E8',
     borderRadius: 5,
     fontSize: 28,
-    height: '20%'
   },
   errorTextStyle: {
     color: 'red',

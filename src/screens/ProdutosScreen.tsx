@@ -152,7 +152,6 @@ const ProdutosScreen = ({ navigation }: any) => {
       <ScrollView
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{
-          justifyContent: 'center',
           alignContent: 'center',
           flex: 1,
         }}>
@@ -522,9 +521,9 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   buttonStyle: {
-    marginTop: 30,
-    marginLeft: 15,
-    marginRight: 15,
+    margin: 15,
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   buttonStyleX: {
     marginTop: 8,
