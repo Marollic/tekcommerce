@@ -11,7 +11,7 @@ type ImageBackgroundProps = DefaultImageBackground['props'] & {
 const ImgBackground = (props: ImageBackgroundProps) => {
 
     return (
-            <DefaultImageBackground {...props} />
+        <DefaultImageBackground {...props} />
     )
 }
 

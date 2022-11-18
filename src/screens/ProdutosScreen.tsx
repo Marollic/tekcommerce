@@ -199,7 +199,6 @@ const ProdutosScreen = ({ navigation }: any) => {
   }
 
   const renderItem = ({ item }: any) => {
-    console.log('reder ')
     return (
       <View>
         <Image
@@ -208,8 +207,8 @@ const ProdutosScreen = ({ navigation }: any) => {
           style={{
             width: 200,
             height: 200,
-            margin: 15,
-            borderRadius: 5,
+            marginLeft: 15,
+            borderRadius: 15,
           }}
         />
       </View>
@@ -229,7 +228,6 @@ const ProdutosScreen = ({ navigation }: any) => {
           alignContent: 'center',
           flex: 1,
         }}>
-
 
         <KeyboardAvoidingView enabled>
           <ScrollView>
@@ -557,13 +555,17 @@ const ProdutosScreen = ({ navigation }: any) => {
             </View>
 
             {images.length > 0 ?
-              (<ScrollView style={{ flexDirection: 'row' }}>
-                <FlatList contentContainerStyle={{ flexDirection: 'row', margin: 15 }}
+              (<View style={{ margin: 15 }} >
+                <FlatList
+                  horizontal
+                  pagingEnabled={true}
+                  showsHorizontalScrollIndicator={false}
+                  legacyImplementation={false}
                   data={images}
                   renderItem={renderItem}
-                  keyExtractor={({ item }: any) => item}
+                  keyExtractor={(item: any) => new Date().getTime() + '-' + item}
                 />
-              </ScrollView>) : null
+              </View>) : null
             }
 
             <View style={styles.btnParentSection}>
