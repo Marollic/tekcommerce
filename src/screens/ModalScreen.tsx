@@ -74,7 +74,7 @@ const ModalScreen = ({ navigation, route }: any) => {
         <Button
           style={styles.buttonDesign}
         >
-          ATUALIZAR DADOS
+          ADD TO CART
         </Button>
       </View>
 

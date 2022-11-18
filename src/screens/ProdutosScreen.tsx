@@ -169,9 +169,10 @@ const ProdutosScreen = ({ navigation }: any) => {
     console.log(result);
 
     if (!result.cancelled) {
-      let obj = images
-      obj.push(result.uri)
-      setImages(obj);
+      setImages((listImg: any) => {
+        listImg.push(result.uri);
+        return [...listImg]
+      });
     }
   }
 
@@ -191,10 +192,10 @@ const ProdutosScreen = ({ navigation }: any) => {
     console.log(result);
 
     if (!result.cancelled) {
-      let obj = images
-      obj.push(result.uri)
-      setImages(obj);
-      console.log(obj);
+      setImages((listImg: any) => {
+        listImg.push(result.uri);
+        return [...listImg]
+      });
     }
   }
 
@@ -553,7 +554,7 @@ const ProdutosScreen = ({ navigation }: any) => {
               </View>
             </View>
 
-            <View style={{ margin: 15, height: 200 }} >
+            <View style={{ margin: 15 }} >
               <FlatList
                 horizontal
                 pagingEnabled={true}
@@ -564,6 +565,7 @@ const ProdutosScreen = ({ navigation }: any) => {
                 keyExtractor={(item: any) =>
                   new Date().getTime() + '-' + item
                 }
+                extraData={images}
               />
             </View>
 
@@ -634,11 +636,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   btnParentSection: {
-    alignItems: 'center',
-    marginTop: 15
+    margin: 15,
   },
   btnSection: {
-    width: 225,
+    width: '100%',
     height: 50,
     backgroundColor: '#DCDCDC',
     alignItems: 'center',
