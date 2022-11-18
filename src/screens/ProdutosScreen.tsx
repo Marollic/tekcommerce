@@ -200,10 +200,10 @@ const ProdutosScreen = ({ navigation }: any) => {
 
   const renderItem = ({ item }: any) => {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Image
           source={{ uri: item }}
-          resizeMode='contain'
+          resizeMode='cover'
           style={{
             width: 200,
             height: 200,
@@ -214,7 +214,6 @@ const ProdutosScreen = ({ navigation }: any) => {
       </View>
     );
   };
-
 
   return (
 
@@ -554,19 +553,19 @@ const ProdutosScreen = ({ navigation }: any) => {
               </View>
             </View>
 
-            {images.length > 0 ?
-              (<View style={{ margin: 15 }} >
-                <FlatList
-                  horizontal
-                  pagingEnabled={true}
-                  showsHorizontalScrollIndicator={false}
-                  legacyImplementation={false}
-                  data={images}
-                  renderItem={renderItem}
-                  keyExtractor={(item: any) => new Date().getTime() + '-' + item}
-                />
-              </View>) : null
-            }
+            <View style={{ margin: 15, height: 200 }} >
+              <FlatList
+                horizontal
+                pagingEnabled={true}
+                showsHorizontalScrollIndicator={false}
+                legacyImplementation={false}
+                data={images}
+                renderItem={renderItem}
+                keyExtractor={(item: any) =>
+                  new Date().getTime() + '-' + item
+                }
+              />
+            </View>
 
             <View style={styles.btnParentSection}>
 
