@@ -1,20 +1,12 @@
 import React, { useLayoutEffect, useState, createRef } from 'react';
-import { View, StyleSheet, Keyboard, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, StyleSheet, Keyboard, TouchableOpacity, Image, FlatList, Platform } from 'react-native';
 import { Button, Icon, Text, KeyboardAvoidingView, ScrollView, Input } from 'native-base';
 import { FontAwesome5, MaterialCommunityIcons, MaterialIcons, Octicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loader from '../component/Loader';
 
 
 const ProdutosScreen = ({ navigation }: any) => {
-
-  const [userName, setUserName] = useState('');
-  const [age, setAge] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [address, setAddress] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const [userPasswordConfirm, setUserPasswordConfirm] = useState('');
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -26,32 +18,6 @@ const ProdutosScreen = ({ navigation }: any) => {
   const [category, setCategory] = useState('');
   const [thumbnail, setThumbnail] = useState('');
   const [images, setImages] = useState(Array<any>);
-
-  useLayoutEffect(() => {
-    AsyncStorage.getItem('user_id').then((value) => {
-      fetch(`https://tekcommerce.herokuapp.com/api/user/search?q=${value}`, {
-        method: 'GET',
-        headers: {
-
-          'Content-Type':
-            'application/x-www-form-urlencoded;charset=UTF-8',
-        },
-      })
-        .then((response) => response.json())
-        .then((responseJson) => {
-
-          setUserName(responseJson.data[0].name);
-          setAge(responseJson.data[0].age);
-          setUserEmail(responseJson.data[0].email);
-          setAddress(responseJson.data[0].address);
-          setUserPassword(responseJson.data[0].password);
-          setUserPasswordConfirm(responseJson.data[0].password);
-        })
-    })
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, [title]);
 
   const [loading, setLoading] = useState(false);
   const [errortext, setErrortext] = useState('');
@@ -103,56 +69,72 @@ const ProdutosScreen = ({ navigation }: any) => {
       return;
     }
 
-    //Show Loader
-    setLoading(true);
-    var dataToSend: any = {
-      name: userName,
-      age: parseInt(age),
-      email: userEmail,
-      address: address,
-      password: userPassword,
-    };
+    if (images.length > 0) {
 
-    var formBody: any = [];
+      //Show Loader
+      setLoading(true);
 
-    for (var key in dataToSend) {
-      var encodedKey = encodeURIComponent(key);
-      var encodedValue = encodeURIComponent(dataToSend[key]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
+      var dataToSend: any = {
+        product: {
+          title,
+          description,
+          price,
+          discountPercentage,
+          rating,
+          stock,
+          brand,
+          category,
+          thumbnail,
+          images,
+        },
+      };
 
-    formBody = formBody.join('&');
+      const data: any = new FormData();
 
-    fetch('https://tekcommerce.herokuapp.com/api/user', {
-      method: 'PUT',
-      body: formBody,
-      headers: {
-        //Header Defination
-        'Content-Type':
-          'application/x-www-form-urlencoded;charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        //Hide Loader
-        setLoading(false);
-        console.log(responseJson);
-        // If server response message same as Data Matched
-        if (responseJson.status === 'success') {
-          console.log(
-            'Registro atualizado com sucesso.'
-          );
-          alert(responseJson.msg);
-        } else {
-          setErrortext(responseJson.msg);
-        }
-      })
-      .catch((error) => {
-        //Hide Loader
-        setLoading(false);
-        console.error(error);
+      for (var i = 1; i <= images.length; i++) {
+        const photo = images[i - 1];
+        data.append('imagens', {
+          name: `${i}-image`,
+          type: 'image/jpeg',
+          uri: Platform.OS === "ios" ? photo.uri.replace("file://", "") : photo.uri,
+        });
+      }
+
+      Object.keys(dataToSend).forEach((key) => {
+        data.append(key, dataToSend[key]);
       });
-  };
+
+      console.log(JSON.stringify(data))
+
+      // data.append('Content-Type', 'image/jpeg');
+
+      fetch('https://tekcommerce.herokuapp.com/api/product/register', {
+        method: 'POST',
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          //Hide Loader
+          setLoading(false);
+          console.log(responseJson);
+          // If server response message same as Data Matched
+          if (responseJson.status === 'success') {
+            console.log(
+              'Registro criado com sucesso.'
+            );
+            alert(responseJson.msg);
+          } else {
+            setErrortext(responseJson.msg);
+          }
+        })
+        .catch((error) => {
+          //Hide Loader
+          setLoading(false);
+          console.error(error);
+        });
+
+    };
+  }
 
   const showImagePicker = async () => {
     // Ask the user for the permission to access the media library 
@@ -166,11 +148,11 @@ const ProdutosScreen = ({ navigation }: any) => {
     const result = await ImagePicker.launchImageLibraryAsync();
 
     // Explore the result
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
       setImages((listImg: any) => {
-        listImg.push(result.uri);
+        listImg.push(result);
         return [...listImg]
       });
     }
@@ -189,11 +171,11 @@ const ProdutosScreen = ({ navigation }: any) => {
     const result = await ImagePicker.launchCameraAsync();
 
     // Explore the result
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
       setImages((listImg: any) => {
-        listImg.push(result.uri);
+        listImg.push(result);
         return [...listImg]
       });
     }
@@ -203,7 +185,7 @@ const ProdutosScreen = ({ navigation }: any) => {
     return (
       <View style={{ flex: 1 }}>
         <Image
-          source={{ uri: item }}
+          source={{ uri: item.uri }}
           resizeMode='cover'
           style={{
             width: 200,
